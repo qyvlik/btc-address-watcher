@@ -1,7 +1,7 @@
 import QmlProject 1.1
 
 Project {
-    mainFile: "main.qml"
+//    mainFile: "main.qml"
 
     /* Include .qml, .js, and image files from current directory and subdirectories */
     QmlFiles {
@@ -18,19 +18,16 @@ Project {
         filter: "*.md"
     }
     Files{
-        directory: "../assets"
+        directory: "../../assets"
     }
-    Files{
-        directory: "../docs"
-        filter: "*.md"
-    }
+
     QmlFiles {
-        directory: "../qmlModules"
+        directory: "../../qmlModules"
     }
     JavaScriptFiles {
-        directory: "../qmlModules"
+        directory: "../../qmlModules"
     }
 
     /* List of plugin directories passed to QML runtime */
-    importPaths: [ "../qmlModules" ]
+    importPaths: [ "../../qmlModules" ]
 }

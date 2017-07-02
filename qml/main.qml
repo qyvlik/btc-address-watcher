@@ -3,43 +3,36 @@ import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.2
 
 import "pages"
+import "components"
 
 AppMain {
 
     id: app
 
+//    title: view.currentItem.title
+
+
     SwipeView {
         id: view
         width: app.width
         height: app.height
+        currentIndex: tabBar.currentIndex
 
         AssetsPage {
-            width: app.width
-            height: app.height
         }
 
-        Page {
-            width: app.width
-            height: app.height
-            background: Rectangle {
-                color: "yellow"
-            }
-        }
-
-        Rectangle {
-            color: "green"
-            width: app.width
-            height: app.height
+        SettingsPage {
         }
     }
 
-    PageIndicator {
-        id: indicator
-
-        count: view.count
+    footer: TabBar {
+        id: tabBar
         currentIndex: view.currentIndex
-
-        anchors.bottom: view.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
+        TabButton {
+            text: qsTr("Assets")
+        }
+        TabButton {
+            text: qsTr("Settings")
+        }
     }
 }

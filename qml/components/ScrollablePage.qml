@@ -11,13 +11,14 @@ Page {
 
     Flickable {
         anchors.fill: parent
+        contentWidth: __pane.width
         contentHeight: __pane.implicitHeight
         flickableDirection: Flickable.AutoFlickIfNeeded
 
         Pane {
             id: __pane
-            width: parent.width
-            background: Item { }
+            width: page.width
+            background: Item { }            // for transparent background
         }
 
         ScrollIndicator.vertical: ScrollIndicator { }

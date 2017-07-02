@@ -4,26 +4,66 @@ import QtQuick.Layouts 1.2
 
 import "../components"
 
-ScrollablePage {
+Page {
     id: assetsPage
 
-    topPadding: 0
+    title: "Assets"
 
-    ColumnLayout {
-        width: parent.width
 
-        Item {
-            Layout.fillWidth: true
+    ListView {
+        id: view
+        anchors.fill: parent
 
+        header: Item {
+            width: parent.width
+            height: parent.width * 0.66
+//            Rectangle {
+//                anchors.fill: parent
+//                color: "green"
+//            }
+
+            Label {
+                anchors.centerIn: parent
+                text: "Assets: " + 100 + "ETH"
+            }
 
         }
+
+        headerPositioning:  ListView.PullBackHeader
+
+        delegate: Item {
+            width: parent.width
+            height: 64 * dp
+            Rectangle {
+                anchors.fill: parent
+                color: Qt.rgba(Math.random(), Math.random(), Math.random())
+            }
+        }
+
+        clip: true
+
+        model: 5
+
     }
 
-    padding: 0
+    Item {
+        id: headerItem
+        anchors.top: parent.top
+        width: parent.width
+        height: 48 * dp
 
+        Rectangle {
+            anchors.fill: parent
+            color: "red"
 
-    background: Rectangle {
-        color: "red"
+            // opacity: (view.contentY + headerItem.height>0) ? 1 : 0.1
+            opacity: 0.1
+            Label {
+                anchors.centerIn: parent
+                text: view.contentY + headerItem.height
+            }
+
+        }
     }
 
 }
