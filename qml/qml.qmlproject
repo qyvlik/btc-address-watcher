@@ -1,0 +1,33 @@
+import QmlProject 1.1
+
+Project {
+    mainFile: "main.qml"
+
+    /* Include .qml, .js, and image files from current directory and subdirectories */
+    QmlFiles {
+        directory: "."
+    }
+    JavaScriptFiles {
+        directory: "."
+    }
+    ImageFiles {
+        directory: "."
+    }
+    Files{
+        directory: "."
+        filter: "*.md"
+    }
+    Files{
+        directory: "../assets"
+    }
+
+    QmlFiles {
+        directory: "../qmlModules"
+    }
+    JavaScriptFiles {
+        directory: "../qmlModules"
+    }
+
+    /* List of plugin directories passed to QML runtime */
+    importPaths: [ "../qmlModules" ]
+}

@@ -37,3 +37,11 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
+# qmlc
+*.qmlc
+*.jsc
+
+# node
+node_modules
+
+prototype
