@@ -3,12 +3,50 @@ import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.2
 
 import "../components"
+import "../services"
 
 Page {
     id: assetsPage
 
     title: "Assets"
 
+    ListenBtcAddressService {
+        id: service
+        connection: databaseConfig
+    }
+
+    Dialog {
+        id: inputAddressDialog
+        width: parent.width * 0.8
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        x: (parent.width -  inputAddressDialog.width)/2
+        y: (parent.height -  inputAddressDialog.height)/3
+
+        ColumnLayout {
+            id: columnLayout
+            width: parent.width
+            TextField {
+                id: btcAddressInput
+                placeholderText: "Address"
+                Layout.fillWidth: true
+                text: "1DzEaWjvPMKue41doV8bah21Zw1fyiQSLL"
+            }
+            TextField {
+                id: btcAddressAliasNameInput
+                placeholderText: "Alias"
+                Layout.fillWidth: true
+                text: "qyvlik"
+            }
+        }
+
+        onAccepted: {
+            service.saveBtcAddress(btcAddressInput.text, btcAddressAliasNameInput.text);
+        }
+
+        onRejected: {
+            console.log("Cancel clicked")
+        }
+    }
 
     ListView {
         id: view
@@ -16,17 +54,29 @@ Page {
 
         header: Item {
             width: parent.width
-            height: parent.width * 0.66
-//            Rectangle {
-//                anchors.fill: parent
-//                color: "green"
-//            }
+            height: parent.width * 0.33
 
-            Label {
-                anchors.centerIn: parent
-                text: "Assets: " + 100 + "ETH"
+            //            Label {
+            //                anchors.centerIn: parent
+            //                text: "Assets: " + 100 + "ETH"
+            //            }
+
+
+            Rectangle {
+                width: 48 * dp
+                height: 48 * dp
+                anchors.margins: 8 * dp
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                Label {
+                    text: "+"
+                    anchors.centerIn: parent
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: inputAddressDialog.open()
+                }
             }
-
         }
 
         headerPositioning:  ListView.PullBackHeader
@@ -42,28 +92,8 @@ Page {
 
         clip: true
 
-        model: 5
-
-    }
-
-    Item {
-        id: headerItem
-        anchors.top: parent.top
-        width: parent.width
-        height: 48 * dp
-
-        Rectangle {
-            anchors.fill: parent
-            color: "red"
-
-            // opacity: (view.contentY + headerItem.height>0) ? 1 : 0.1
-            opacity: 0.1
-            Label {
-                anchors.centerIn: parent
-                text: view.contentY + headerItem.height
-            }
-
+        model: ListModel {
+            id: addressListModel
         }
     }
-
 }

@@ -23,3 +23,11 @@ CREATE TABLE `listen_tx_hash` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
+
+## database file
+
+> [f986850383b918670172ff8bc7a2122d.sqlite](C:\Users\Administrator\AppData\Local\QtProject\QtQmlViewer\QML\OfflineStorage\Databases\f986850383b918670172ff8bc7a2122d.sqlite)
+
+## error
+
+> Error: SQL: database version mismatch

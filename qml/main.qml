@@ -1,38 +1,29 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.1
 import QtQuick.Layouts 1.2
+import QtQuick.LocalStorage 2.0
 
-import "pages"
-import "components"
+import "configs"
 
 AppMain {
 
     id: app
 
-//    title: view.currentItem.title
+    //    title: view.currentItem.title
 
-
-    SwipeView {
-        id: view
-        width: app.width
-        height: app.height
-        currentIndex: tabBar.currentIndex
-
-        AssetsPage {
-        }
-
-        SettingsPage {
-        }
+    DatabaseConfig {
+        id: __databaseConfig
     }
 
-    footer: TabBar {
-        id: tabBar
-        currentIndex: view.currentIndex
-        TabButton {
-            text: qsTr("Assets")
-        }
-        TabButton {
-            text: qsTr("Settings")
+    readonly property alias databaseConfig : __databaseConfig
+    readonly property alias stackView: __stackView
+
+    StackView {
+        id: __stackView
+        anchors.fill: parent
+        initialItem: AppMainPage {
+            width: __stackView.width
+            height: __stackView.height
         }
     }
 }

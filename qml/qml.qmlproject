@@ -18,6 +18,10 @@ Project {
         filter: "*.md"
     }
     Files{
+        directory: "."
+        filter: "qmldir"
+    }
+    Files{
         directory: "../assets"
     }
     Files{
@@ -26,6 +30,10 @@ Project {
     }
     QmlFiles {
         directory: "../qmlModules"
+    }
+    Files {
+        directory: "../qmlModules"
+        filter: "qmldir"
     }
     JavaScriptFiles {
         directory: "../qmlModules"
