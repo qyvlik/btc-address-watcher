@@ -40,7 +40,14 @@ Page {
         }
 
         onAccepted: {
-            service.saveBtcAddress(btcAddressInput.text, btcAddressAliasNameInput.text);
+            service
+            .saveBtcAddress(btcAddressInput.text, btcAddressAliasNameInput.text)
+            .then(function(rowsAffected){
+                console.log("rowsAffected:", rowsAffected)
+            })
+            .catch(function(error){
+                console.log("error:", error)
+            })
         }
 
         onRejected: {
