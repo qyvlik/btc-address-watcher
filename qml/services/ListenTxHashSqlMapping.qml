@@ -58,6 +58,22 @@ SqlMapping {
     }
 
     //@override
+    function insertList(list) {
+        var bindList = [];
+        for(var iter in list) {
+            var entity = list[iter];
+            var bind = [entity.txHash, entity.address, entity.receive, entity.amount];
+            bindList.push(bind)
+        }
+
+        sqlQueryBuilder.insertMutilValues('listen_tx_hash',
+                                   ['tx_hash', 'address', 'receive', 'amount'],
+                                   bindList);
+
+        return sqlQueryBuilder.dump();
+    }
+
+    //@override
     function update(entity) {
         return {
             sql: "",

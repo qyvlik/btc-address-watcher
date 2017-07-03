@@ -4,7 +4,6 @@ CrudService {
     id: listenBtcAddressService
     __dao: ListenBtcAddressDao {
         __connection: listenBtcAddressService.connection
-        debug: listenBtcAddressService.debug
     }
 
     function saveBtcAddress(address, aliasName, callback) {

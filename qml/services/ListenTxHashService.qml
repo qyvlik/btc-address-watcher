@@ -4,6 +4,5 @@ CrudService {
     id: listenTxHashService
     __dao: ListenTxHashDao {
         __connection: listenTxHashService.connection
-        debug: listenTxHashService.debug
     }
 }

@@ -13,6 +13,7 @@ AppMain {
 
     DatabaseConfig {
         id: __databaseConfig
+        debug: false
     }
 
     readonly property alias databaseConfig : __databaseConfig

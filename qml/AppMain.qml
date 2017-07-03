@@ -5,6 +5,7 @@ import QtQuick.Window 2.0
 
 ApplicationWindow {
     visible: true
+
     width: 360 * dp
     height: 640 * dp
 
