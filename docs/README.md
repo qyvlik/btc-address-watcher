@@ -31,3 +31,7 @@ CREATE TABLE `listen_tx_hash` (
 ## error
 
 > Error: SQL: database version mismatch
+
+## sqlite browser
+
+[sqlitebrowser/latest](https://nightlies.sqlitebrowser.org/latest/)
