@@ -35,16 +35,16 @@ DatabaseConnection {
     }
 
     readonly property var __initDatabaseSql: [
-        "CREATE TABLE `listen_btc_address` (
-  `address` varchar(64) NOT NULL,
+        "CREATE TABLE `listen_btc_address`
+(`address` varchar(64) NOT NULL,
   `alias_name` varchar(64) DEFAULT NULL ,
   `balance` bigint(20) DEFAULT NULL ,
   `listen` varchar(1) DEFAULT NULL,
   `create_time` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`address`)
 );",
-        "CREATE TABLE `listen_tx_hash` (
-  `id` integer PRIMARY KEY autoincrement,
+        "CREATE TABLE `listen_tx_hash`
+( `id` integer PRIMARY KEY autoincrement,
   `tx_hash` varchar(64) NOT NULL,
   `address` varchar(64) NOT NULL,
   `receive` varchar(1) NOT NULL,

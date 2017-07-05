@@ -21,10 +21,11 @@ SqlMapping {
         sqlQueryBuilder.select(['address', 'alias_name', 'balance', 'listen', 'create_time'])
         .from('listen_btc_address');
 
-        if(stringNotEmpty(entity.address)) {
-            sqlQueryBuilder.where();
-            sqlQueryBuilder.equals('address', entity.address);
-        }
+        sqlQueryBuilder.where(function(builder){
+            if(stringNotEmpty(entity.address)) {
+                builder.equals('address', entity.address);
+            }
+        });
 
         return sqlQueryBuilder.dump();
     }
@@ -38,12 +39,22 @@ SqlMapping {
     function findList(entity) {
 
         sqlQueryBuilder.select(['address', 'alias_name', 'balance', 'listen', 'create_time'])
-        .from('listen_btc_address');
+        .from('listen_btc_address')
+        .where(function(builder){
 
-        if(stringNotEmpty(entity.address)) {
-            sqlQueryBuilder.where();
-            sqlQueryBuilder.equals('address', entity.address);
-        }
+            if(stringNotEmpty(entity.address)) {
+                builder.equals('address', entity.address);
+            }
+
+            if(stringNotEmpty(entity.aliasName)) {
+                builder.equals('alias_name', entity.aliasName);
+            }
+
+            if(stringNotEmpty(entity.listen)) {
+                builder.equals('listen', entity.listen);
+            }
+        })
+        .orderBy(['create_time']);
 
         return sqlQueryBuilder.dump();
     }

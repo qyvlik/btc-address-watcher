@@ -19,12 +19,14 @@ SqlMapping {
     function get(entity) {
 
         sqlQueryBuilder.select(['id', 'tx_hash', 'address', 'receive', 'amount'])
-        .from('listen_tx_hash');
+        .from('listen_tx_hash')
+        .where(function(builder){
 
-        if(stringNotEmpty(entity.address)) {
-            sqlQueryBuilder.where();
-            sqlQueryBuilder.equals('address', entity.address);
-        }
+            if(stringNotEmpty(entity.address)) {
+                builder.equals('address', entity.address);
+            }
+
+        });
 
         return sqlQueryBuilder.dump();
     }
@@ -38,12 +40,21 @@ SqlMapping {
     function findList(entity) {
 
         sqlQueryBuilder.select(['id', 'tx_hash', 'address', 'receive', 'amount'])
-        .from('listen_tx_hash');
+        .from('listen_tx_hash')
+        .where(function(builder) {
 
-        if(stringNotEmpty(entity.address)) {
-            sqlQueryBuilder.where();
-            sqlQueryBuilder.equals('address', entity.address);
-        }
+            if(stringNotEmpty(entity.address)) {
+                builder.equals('address', entity.address);
+            }
+
+            if(stringNotEmpty(entity.txHash)) {
+                builder.equals('tx_hash', entity.txHash);
+            }
+
+            if(stringNotEmpty(entity.receive)) {
+                builder.equals('receive', entity.receive);
+            }
+        });
 
         return sqlQueryBuilder.dump();
     }
@@ -67,8 +78,8 @@ SqlMapping {
         }
 
         sqlQueryBuilder.insertMutilValues('listen_tx_hash',
-                                   ['tx_hash', 'address', 'receive', 'amount'],
-                                   bindList);
+                                          ['tx_hash', 'address', 'receive', 'amount'],
+                                          bindList);
 
         return sqlQueryBuilder.dump();
     }

@@ -10,11 +10,6 @@ Page {
 
     title: "Assets"
 
-    ListenBtcAddressService {
-        id: service
-        connection: databaseConfig
-    }
-
     Dialog {
         id: inputAddressDialog
         width: parent.width * 0.8
@@ -40,7 +35,7 @@ Page {
         }
 
         onAccepted: {
-            service
+            blockChainService
             .saveBtcAddress(btcAddressInput.text, btcAddressAliasNameInput.text)
             .then(function(rowsAffected){
                 console.log("rowsAffected:", rowsAffected)

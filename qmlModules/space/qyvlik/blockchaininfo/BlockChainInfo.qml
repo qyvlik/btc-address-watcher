@@ -69,7 +69,7 @@ QtObject {
         id: timer
         interval: 30000
         repeat: true
-        running: true
+        running: blockChainInfo.active
         onTriggered: {
             subscribing('ping');
         }

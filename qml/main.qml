@@ -7,6 +7,7 @@ import "configs"
 import "services"
 
 import space.qyvlik.utils 1.0           // import PromiseLib
+import space.qyvlik.sqml 1.0
 
 AppMain {
 
@@ -20,14 +21,18 @@ AppMain {
     }
 
 
-    BlockChainService {
-        id: __blockChainService
-        active: false
+    Component {
+        id: blockChainServiceCom
+        BlockChainService {
+            active: true
+        }
     }
 
     readonly property alias databaseConfig : __databaseConfig
     readonly property alias stackView: __stackView
-    readonly property alias blockChainService: __blockChainService
+    readonly property alias blockChainService: app.__blockChainService
+
+    property BlockChainService __blockChainService
 
     StackView {
         id: __stackView
@@ -38,22 +43,15 @@ AppMain {
         }
     }
 
-
     Lazyer {
         id: lazyer
     }
 
-    Component.onCompleted: {
-        var Promise = PromiseLib.Promise;
 
-        var p = new Promise(function(resolve, reject){
-            console.log("here is promise!");
-            lazyer.lazyDo(1000, function(){
-                resolve("good");
-            })
-        }).then(function(value){
-            console.log("value:", value);
+    Component.onCompleted: {
+        lazyer.lazyDo(500, function(){
+            app.__blockChainService = blockChainServiceCom.createObject(app);
+            console.info("createObject blockChainService:", app.__blockChainService);
         });
     }
-
 }

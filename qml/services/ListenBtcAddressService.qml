@@ -11,8 +11,7 @@ CrudService {
     function saveBtcAddress(address, aliasName) {
         var Promise = PromiseLib.Promise;
 
-        return new Promise(function(resolve, reject) {
-
+        var __insert = function(resolve, reject) {
             var addressEntity = {
                 "address": address,
                 "aliasName": aliasName,
@@ -25,6 +24,28 @@ CrudService {
                 resolve(rowsAffected)
             }, function(error){
                 reject(error);
+            });
+        };
+
+        return btcAddressExist(address)
+        .then(function(list){
+            if (list.length !== 0) {
+                console.error("btcAddressExist:", address);
+                throw new Error('btcAddressExist ' + address);
+            }
+            return new Promise(__insert);
+        });
+    }
+
+    function btcAddressExist(address) {
+        var Promise = PromiseLib.Promise;
+
+        return new Promise(function(resolve, reject) {
+            listenBtcAddressService.findList({'address': address},
+                                             function(list){
+                resolve(list);
+            }, function(e){
+                reject(e);
             });
         });
     }

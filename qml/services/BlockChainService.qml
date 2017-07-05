@@ -1,8 +1,8 @@
 import QtQuick 2.0
 
-import space.qyvlik.blockchaininfo 1.0;
+import space.qyvlik.blockchaininfo 1.0
+import space.qyvlik.utils 1.0
 
-import "../services"
 
 Item {
     id: blockChainService
@@ -30,7 +30,7 @@ Item {
                 var inputAddr = input['prev_out']['addr'];
                 var inputAddrAmount = input['prev_out']['value'];
 
-                if (inputAddr === '') {
+                if (Utility.stringNotEmpty(inputAddr)) {
                     continue;
                 }
 
@@ -47,7 +47,7 @@ Item {
                 var outputAddr = output['addr'];
                 var outputAddrAmount = output['value'];
 
-                if (outputAddr === '') {
+                if (Utility.stringNotEmpty(outputAddr)) {
                     continue;
                 }
 
@@ -68,5 +68,14 @@ Item {
     ListenTxHashService {
         id: listenTxHashService
         connection: databaseConfig
+    }
+
+    ListenBtcAddressService {
+        id: listenBtcAddressService
+        connection: databaseConfig
+    }
+
+    function saveBtcAddress(address, aliasName) {
+        return listenBtcAddressService.saveBtcAddress(address, aliasName);
     }
 }
