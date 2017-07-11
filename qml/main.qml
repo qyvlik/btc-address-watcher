@@ -47,9 +47,8 @@ AppMain {
         id: lazyer
     }
 
-
     Component.onCompleted: {
-        lazyer.lazyDo(500, function(){
+        lazyer.lazyDo(600, function(){
             app.__blockChainService = blockChainServiceCom.createObject(app);
             console.info("createObject blockChainService:", app.__blockChainService);
         });

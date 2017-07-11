@@ -116,10 +116,10 @@ function writeTextFileAsync(file, content, callback) {
 }
 
 function stringNotEmpty(str) {
-    if(typeof str === 'undefined') {
+    if(typeof str === 'undefined' || str === null) {
         return false;
     }
-    if(str === '') {
+    if(str == '' || str.length == 0) {
         return false;
     }
     return true;
@@ -129,4 +129,31 @@ function stringNotEmpty(str) {
 function randomColor(a) {
     a = a || 1;
     return Qt.rgba(Math.random(), Math.random(), Math.random(), a);
+}
+
+function listGroup(list, step, callback) {
+    callback = callback || function(list) {
+    };
+
+    if (typeof list === 'undefined' || list === null || list.length === 0) {
+        return;
+    }
+
+    var len = list.length;
+    var start = 0;
+    var end = step;
+    if (len <= step) {
+        callback(list);
+        return;
+    }
+
+    while(start < len) {
+        var tList = list.slice(start, end);             // [start, end)
+        callback(tList);
+        start = end;
+        end += step;
+        if (end > len) {
+            end = len;
+        }
+    }
 }

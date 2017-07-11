@@ -22,6 +22,7 @@ QtObject {
     property alias ping: timer.running
     property bool subscribingAfterActive: true
     property alias active: webSocket.active
+    property bool isOpen: false
 
     readonly property WebSocket __webSocket: WebSocket {
         id: webSocket
@@ -46,19 +47,24 @@ QtObject {
             switch(webSocket.status)
             {
             case WebSocket.Connecting:
+                isOpen = false;
                 blockChainInfo.connecting(webSocket.errorString);
                 break;
             case WebSocket.Open:
+                isOpen = true;
                 blockChainInfo.open(webSocket.errorString);
                 break;
             case WebSocket.Closing:
+                isOpen = false;
                 blockChainInfo.closing(webSocket.errorString);
                 break;
             case WebSocket.Closed:
+                isOpen = false;
                 blockChainInfo.closed(webSocket.errorString);
                 break;
             case WebSocket.Error:
             default:
+                isOpen = false;
                 blockChainInfo.error(webSocket.errorString);
                 break;
             }

@@ -6,8 +6,6 @@ import "../components"
 import "../"
 
 AppMain {
-
-
     id: app
 
     SwipeView {
