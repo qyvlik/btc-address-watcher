@@ -54,15 +54,11 @@ Page {
         id: view
         anchors.fill: parent
 
-        header: Item {
+        header: Rectangle {
             width: parent.width
             height: parent.width * 0.33
 
-            //            Label {
-            //                anchors.centerIn: parent
-            //                text: "Assets: " + 100 + "ETH"
-            //            }
-
+            color: "#fedefe"
 
             Rectangle {
                 width: 48 * dp

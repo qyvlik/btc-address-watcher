@@ -17,6 +17,9 @@ Page {
         AssetsPage {
         }
 
+        AppsPage {
+        }
+
         SettingsPage {
         }
     }
@@ -26,6 +29,9 @@ Page {
         currentIndex: view.currentIndex
         TabButton {
             text: qsTr("Assets")
+        }
+        TabButton {
+            text: qsTr("Apps")
         }
         TabButton {
             text: qsTr("Settings")

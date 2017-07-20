@@ -12,10 +12,12 @@ ScrollablePage {
     ColumnLayout {
         anchors.fill: parent
 
-        Button {
-            id: button
-            onClicked: {
-                blockChainService.save2db = !blockChainService.save2db;
+        CheckBox {
+            id: checkBox
+            text: 'save'
+            anchors.centerIn: parent
+            onCheckedChanged: {
+                blockChainService.save2db = checkBox.checked
             }
         }
     }

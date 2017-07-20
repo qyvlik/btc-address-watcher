@@ -1,10 +1,55 @@
 <RCC>
     <qresource prefix="/">
-        <file>qtquickcontrols2.conf</file>
+        <file>qml/components/ScrollablePage.qml</file>
+        <file>qml/components/SwipeToPopView.qml</file>
+        <file>qml/configs/DatabaseConfig.qml</file>
+        <file>qml/pages/AppsPage.qml</file>
+        <file>qml/pages/AssetsPage.qml</file>
+        <file>qml/pages/SettingsPage.qml</file>
+        <file>qml/services/BlockChainService.qml</file>
+        <file>qml/services/ListenBtcAddressDao.qml</file>
+        <file>qml/services/ListenBtcAddressDaoSqlMapping.qml</file>
+        <file>qml/services/ListenBtcAddressService.qml</file>
+        <file>qml/services/ListenTxHashDao.qml</file>
+        <file>qml/services/ListenTxHashService.qml</file>
+        <file>qml/services/ListenTxHashSqlMapping.qml</file>
+        <file>qml/tests/test_array_slice.qml</file>
+        <file>qml/tests/test_scollable_page.qml</file>
+        <file>qml/tests/test_sql_query_builder_where.qml</file>
+        <file>qml/tests/test_swipe_to_pop_view.qml</file>
+        <file>qml/tests/tests.qmlproject</file>
+        <file>qml/tests/tests.qmlproject.user</file>
+        <file>qml/AppMain.qml</file>
+        <file>qml/AppMainPage.qml</file>
         <file>qml/main.qml</file>
+        <file>qml/qml.qmlproject</file>
+        <file>qmlModules/space/qyvlik/blockchaininfo/BlockChainInfo.qml</file>
+        <file>qmlModules/space/qyvlik/blockchaininfo/main.qml</file>
+        <file>qmlModules/space/qyvlik/blockchaininfo/qmldir</file>
+        <file>qmlModules/space/qyvlik/fontawesome/fontawesome-webfont.ttf</file>
+        <file>qmlModules/space/qyvlik/fontawesome/FontAwesome.qml</file>
+        <file>qmlModules/space/qyvlik/fontawesome/FontIcon.qml</file>
+        <file>qmlModules/space/qyvlik/fontawesome/qmldir</file>
+        <file>qmlModules/space/qyvlik/image2base64/Image2Base64.qml</file>
+        <file>qmlModules/space/qyvlik/image2base64/main.qml</file>
+        <file>qmlModules/space/qyvlik/image2base64/qmldir</file>
+        <file>qmlModules/space/qyvlik/qrcode/qmldir</file>
+        <file>qmlModules/space/qyvlik/qrcode/qrcode.js</file>
+        <file>qmlModules/space/qyvlik/qrcode/QRCode.qml</file>
+        <file>qmlModules/space/qyvlik/qrcode/test_qrcode.qml</file>
+        <file>qmlModules/space/qyvlik/sqml/CrudDao.qml</file>
+        <file>qmlModules/space/qyvlik/sqml/CrudService.qml</file>
+        <file>qmlModules/space/qyvlik/sqml/DatabaseConnection.qml</file>
+        <file>qmlModules/space/qyvlik/sqml/qmldir</file>
+        <file>qmlModules/space/qyvlik/sqml/SqlMapping.qml</file>
+        <file>qmlModules/space/qyvlik/sqml/SqlQueryBuilder.qml</file>
+        <file>qmlModules/space/qyvlik/utils/Lazyer.qml</file>
+        <file>qmlModules/space/qyvlik/utils/Promise.qml.js</file>
+        <file>qmlModules/space/qyvlik/utils/qmldir</file>
         <file>qmlModules/space/qyvlik/utils/Ticker.qml</file>
         <file>qmlModules/space/qyvlik/utils/Tracker.qml</file>
         <file>qmlModules/space/qyvlik/utils/Utility.js</file>
-        <file>qmlModules/space/qyvlik/utils/Promise.qml.js</file>
+        <file>assets/.gitignore</file>
+        <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

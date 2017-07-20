@@ -9,7 +9,7 @@ namespace qyvlik {
 class QmlNetworkAccessManagerFactory : public QQmlNetworkAccessManagerFactory
 {
 public:
-    QmlNetworkAccessManagerFactory(maximumCacheSize = 100 * 1024 * 1024);
+    QmlNetworkAccessManagerFactory(qint64 maximumCacheSize = 100 * 1024 * 1024);
     virtual QNetworkAccessManager *create(QObject *parent);
 private:
     qint64 mMaximumCacheSize;

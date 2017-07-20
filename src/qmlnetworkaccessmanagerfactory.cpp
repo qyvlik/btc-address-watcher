@@ -7,7 +7,7 @@
 namespace space {
 namespace qyvlik {
 
-QmlNetworkAccessManagerFactory::QmlNetworkAccessManagerFactory(maximumCacheSize):
+QmlNetworkAccessManagerFactory::QmlNetworkAccessManagerFactory(qint64 maximumCacheSize):
     QQmlNetworkAccessManagerFactory(),
     mMaximumCacheSize(maximumCacheSize)
 {}
