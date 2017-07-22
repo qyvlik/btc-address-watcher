@@ -1,8 +1,8 @@
 import QtQuick 2.0
 
 import space.qyvlik.blockchaininfo 1.0
-import space.qyvlik.utils 1.0
 
+import space.qyvlik.utils 1.0
 
 Item {
     id: blockChainService
@@ -83,7 +83,7 @@ Item {
                 return;
             }
 
-            Utility.listGroup(dataList, 500, function(list){
+            Utility.listGroup(dataList, 200, function(list){
                 listenTxHashService.insertList(list, function(row){
                     console.info('insertList txid:', txObj.hash, " row:", row);
                 });
@@ -96,12 +96,7 @@ Item {
         connection: databaseConfig
     }
 
-    ListenBtcAddressService {
-        id: listenBtcAddressService
-        connection: databaseConfig
-    }
-
-    function saveBtcAddress(address, aliasName) {
-        return listenBtcAddressService.saveBtcAddress(address, aliasName);
+    function deleteAllTx() {
+        return listenTxHashService.deleteAll();
     }
 }

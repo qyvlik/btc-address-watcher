@@ -1,4 +1,5 @@
 # Simple layering CRUD for qml
+# [How to Reduce Your SQLite Database File Size Using Qt](http://amin-ahmadi.com/2016/05/25/sqlite-compress-qt-vacuum/)
 module sqml
 
 CrudDao                 1.0                 ./CrudDao.qml

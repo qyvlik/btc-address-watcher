@@ -11,6 +11,7 @@ CrudService {
     function saveBtcAddress(address, aliasName) {
         var Promise = PromiseLib.Promise;
 
+
         var __insert = function(resolve, reject) {
             var addressEntity = {
                 "address": address,
@@ -19,6 +20,12 @@ CrudService {
                 "createTime": Date.now(),
                 "listen": "1"
             };
+
+            var r = new RegExp('^[13][a-km-zA-HJ-NP-Z1-9]{25,33}$');
+            if (!r.test(address)) {
+                reject('address ' + address + " not a btc address");
+                return;
+            }
 
             insert(addressEntity, function(rowsAffected){
                 resolve(rowsAffected)
@@ -47,6 +54,13 @@ CrudService {
             }, function(e){
                 reject(e);
             });
+        });
+    }
+
+    function deleteAddress(address) {
+        var Promise = PromiseLib.Promise;
+        return new Promise(function(resolve, reject){
+            deleteRecord({address:address}, resolve)
         });
     }
 }

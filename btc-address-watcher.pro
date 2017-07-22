@@ -1,9 +1,10 @@
-QT += qml quick
+QT += qml quick sql
 
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    src/qmlnetworkaccessmanagerfactory.cpp
+    src/qmlnetworkaccessmanagerfactory.cpp \
+    src/sqliteutils.cpp
 
 RESOURCES += \
     qml.qrc
@@ -34,6 +35,7 @@ DISTFILES += \
     README.md
 
 HEADERS += \
-    src/qmlnetworkaccessmanagerfactory.h
+    src/qmlnetworkaccessmanagerfactory.h \
+    src/sqliteutils.h
 
 

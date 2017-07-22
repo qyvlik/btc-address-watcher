@@ -19,7 +19,7 @@ QtObject {
     property DatabaseConnection __connection: null
     property SqlMapping __sqlMapping: null
 
-    readonly property int maxInsertCount: 500
+    readonly property int maxInsertCount: 200
 
     //@abstract
     function __getImpl(entity, callback, error) {

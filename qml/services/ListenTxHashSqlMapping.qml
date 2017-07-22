@@ -103,6 +103,16 @@ SqlMapping {
 
     //@override
     function deleteRecord(entity) {
-        return deleteById(entity)
+        sqlQueryBuilder.deleteFrom('listen_tx_hash')
+        .where()
+        .equals('address', entity.address);
+
+        return sqlQueryBuilder.dump();
+    }
+
+    function deleteAll() {
+        sqlQueryBuilder.deleteFrom('listen_tx_hash');
+
+        return sqlQueryBuilder.dump();
     }
 }

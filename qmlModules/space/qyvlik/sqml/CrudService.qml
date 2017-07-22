@@ -47,7 +47,7 @@ QtObject {
 
     function deleteRecord(entity, callback, error) {
         error = error || __errorImpl;
-        dao.deleteById(entity, callback, error);
+        dao.deleteRecord(entity, callback, error);
     }
 
     function __errorImpl(error) {

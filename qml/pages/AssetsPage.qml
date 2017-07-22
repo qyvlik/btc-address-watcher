@@ -5,10 +5,57 @@ import QtQuick.Layouts 1.2
 import "../components"
 import "../services"
 
+import space.qyvlik.utils 1.0
+
 Page {
     id: assetsPage
 
     title: "Assets"
+
+    ListenBtcAddressService {
+        id: listenBtcAddressService
+        connection: databaseConfig
+    }
+
+    function saveBtcAddress(address, aliasName) {
+        return listenBtcAddressService.saveBtcAddress(address, aliasName);
+    }
+
+    function findAllAddressList() {
+        var Promise = PromiseLib.Promise;
+        return new Promise(function(resolve, reject){
+            listenBtcAddressService.findList({}, resolve);
+        });
+    }
+
+    Dialog {
+        id: deleteAddressDialog
+        width: parent.width * 0.8
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        x: (parent.width -  inputAddressDialog.width)/2
+        y: (parent.height -  inputAddressDialog.height)/3
+
+        title: "delete " + address
+
+        property string address
+        onAccepted: {
+            var p = listenBtcAddressService.deleteAddress(address)
+            p.then(function(effectCount){
+                console.log('delete address:', address, effectCount);
+                deleteAddressDialog.address = '';
+                refreshAddressList();
+            })
+        }
+
+        onRejected: {
+            deleteAddressDialog.address = ''
+        }
+
+        function open4Address(address) {
+            deleteAddressDialog.address = address;
+            deleteAddressDialog.open();
+        }
+    }
 
     Dialog {
         id: inputAddressDialog
@@ -35,10 +82,10 @@ Page {
         }
 
         onAccepted: {
-            blockChainService
-            .saveBtcAddress(btcAddressInput.text, btcAddressAliasNameInput.text)
+            saveBtcAddress(btcAddressInput.text, btcAddressAliasNameInput.text)
             .then(function(rowsAffected){
-                console.log("rowsAffected:", rowsAffected)
+                console.log("save address:", btcAddressInput.text, rowsAffected);
+                refreshAddressList();
             })
             .catch(function(error){
                 console.log("error:", error)
@@ -46,7 +93,7 @@ Page {
         }
 
         onRejected: {
-            console.log("Cancel clicked")
+            console.log("cancel save btc address")
         }
     }
 
@@ -84,7 +131,20 @@ Page {
             height: 64 * dp
             Rectangle {
                 anchors.fill: parent
-                color: Qt.rgba(Math.random(), Math.random(), Math.random())
+                // color: Qt.rgba(Math.random(), Math.random(), Math.random())
+
+                Label {
+                    width: parent.width
+                    anchors.centerIn: parent
+                    text: address
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onPressAndHold: {
+                        deleteAddressDialog.open4Address(address);
+                    }
+                }
             }
         }
 
@@ -93,5 +153,19 @@ Page {
         model: ListModel {
             id: addressListModel
         }
+    }
+
+    function refreshAddressList() {
+        var p = findAllAddressList();
+        p.then(function(list){
+            addressListModel.clear();
+            for(var iter in list) {
+                addressListModel.append(list[iter]);
+            }
+        });
+    }
+
+    Component.onCompleted: {
+        refreshAddressList();
     }
 }

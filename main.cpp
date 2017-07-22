@@ -1,7 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "src/qmlnetworkaccessmanagerfactory.h"
+#include "src/sqliteutils.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +20,11 @@ int main(int argc, char *argv[])
 
     engine.setNetworkAccessManagerFactory(new space::qyvlik::QmlNetworkAccessManagerFactory);
     engine.addImportPath("qrc:/qmlModules");
+
+
+    space::qyvlik::SQLiteUtils* sqliteUtils = new space::qyvlik::SQLiteUtils(&engine, &engine);
+
+    engine.rootContext()->setContextProperty("SqliteUtils", sqliteUtils);
 
     engine.load(QUrl(QLatin1String("qrc:/qml/main.qml")));
 
