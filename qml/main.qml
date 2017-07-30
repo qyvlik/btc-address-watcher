@@ -15,8 +15,11 @@ AppMain {
 
     //    title: view.currentItem.title
 
+    objectName: "root"
+
     DatabaseConfig {
         id: __databaseConfig
+        objectName: "databaseConfig"
         debug: false
     }
 
@@ -52,5 +55,6 @@ AppMain {
             app.__blockChainService = blockChainServiceCom.createObject(app);
             console.info("createObject blockChainService:", app.__blockChainService);
         });
+
     }
 }

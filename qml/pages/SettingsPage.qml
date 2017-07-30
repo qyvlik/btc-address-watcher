@@ -22,14 +22,14 @@ ScrollablePage {
             var p = blockChainService.deleteAllTx();
             p.then(function(effectCount){
                 console.log("delete all tx :", effectCount);
+
+                try {
+                    SqliteUtils.vacuum4qml(Qt.md5(databaseConfig.identifier));
+                } catch(e) {
+                    console.log("e:", e);
+                }
+
             });
-
-
-            try {
-                SqliteUtils.vacuum4qml(Qt.md5(databaseConfig.identifier));
-            } catch(e) {
-                console.log("e:", e)
-            }
         }
 
         onRejected: {

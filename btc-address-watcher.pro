@@ -4,7 +4,9 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     src/qmlnetworkaccessmanagerfactory.cpp \
-    src/sqliteutils.cpp
+    src/sqliteutils.cpp \
+    src/consolelogutils.cpp \
+    src/objectutils.cpp
 
 RESOURCES += \
     qml.qrc
@@ -36,6 +38,8 @@ DISTFILES += \
 
 HEADERS += \
     src/qmlnetworkaccessmanagerfactory.h \
-    src/sqliteutils.h
+    src/sqliteutils.h \
+    src/consolelogutils.h \
+    src/objectutils.h
 
 

@@ -38,6 +38,7 @@ bool SQLiteUtils::vacuum4qml(const QString fileName) {
 
     if (!isOpen) {
         qDebug() << Q_FUNC_INFO << " database can't open";
+        return false;
     }
 
     QSqlQuery query(db);
